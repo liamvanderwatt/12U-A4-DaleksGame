@@ -1,6 +1,9 @@
 
-/** This class models the Doctor in the game. A Doctor has
- *  a position and can move to a new position.
+import java.awt.Color;
+
+/**
+ * This class models the Doctor in the game. A Doctor has a position and can
+ * move to a new position.
  */
 public class Doctor {
 
@@ -13,6 +16,8 @@ public class Doctor {
      * @param theCol The column this Doctor starts at.
      */
     public Doctor(int theRow, int theCol) {
+        this.col = theCol;
+        this.row = theRow;
 
     }
 
@@ -28,6 +33,58 @@ public class Doctor {
      * @param newCol The column the player clicked on.
      */
     public void move(int newRow, int newCol) {
+        //if the doctor wants to move
+        if (newRow == row + 1) {
+            this.row = row + 1;
+        }
+        if (newRow == row - 1) {
+            this.row = row - 1;
+        }
+        if (newCol == col + 1) {
+            this.col = col + 1;
+        }
+        if (newCol == col - 1) {
+            this.col = col - 1;
+        }
+        //for diagonals 
+        if (newRow == row - 1 && newCol == col + 1) {
+            this.row = row - 1;
+            this.col = col + 1;
+        }
+        if (newRow == row + 1 && newCol == col + 1) {
+            this.row = row + 1;
+            this.col = col + 1;
+        }
+        if (newRow == row + 1 && newCol == col - 1) {
+            this.row = row + 1;
+            this.col = col - 1;
+        }
+        if (newRow == row - 1 && newCol == col - 1) {
+            this.row = row - 1;
+            this.col = col - 1;
+        }
+        //creating the teleport function
+        if (newRow > row + 1) {
+            this.row = (int) (Math.random() * 12);
+            this.col = (int) (Math.random() * 12);
+        }
+        if (newCol > col + 1) {
+            this.row = (int) (Math.random() * 12);
+            this.col = (int) (Math.random() * 12);
+        }
+        if (newRow < row - 1) {
+            this.row = (int) (Math.random() * 12);
+            this.col = (int) (Math.random() * 12);
+        }
+        if (newCol < col - 1) {
+            this.row = (int) (Math.random() * 12);
+            this.col = (int) (Math.random() * 12);
+        }
+        //if the user decides to wait a turn
+        if (newRow == row && newCol == col) {
+            this.row = newRow;
+            this.col = newCol;
+        }
 
     }
 
@@ -37,7 +94,7 @@ public class Doctor {
      * @return This Doctor's row.
      */
     public int getRow() {
-
+        return this.row;
     }
 
     /**
@@ -46,7 +103,6 @@ public class Doctor {
      * @return This Doctor's column.
      */
     public int getCol() {
-
+        return this.col;
     }
-
 }
